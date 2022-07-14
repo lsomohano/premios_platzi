@@ -26,13 +26,7 @@
                 <br>
             {% endfor %}
         </fieldset>
-        <input type="submit" value="Votar">
+        <input type="submit" value="Votar"> | <a href="{% url 'polls:index' %}">Salir</a>
     </form>
-    <!--<h1>{{ question.question_text }}</h1>
-    <ul>
-        {% for choice in question.choice_set.all %}
-            <li>{{ choice.chice_text }}</li>
-        {% endfor %}
-    </ul>-->
 </body>
 </html>
