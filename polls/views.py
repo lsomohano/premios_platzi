@@ -1,5 +1,3 @@
-from msilib.schema import Class
-from re import template
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
@@ -28,19 +26,20 @@ from .models import Question,Choice
 
 class IndexView(generic.ListView):
     template_name = "polls/index.html"
-    context_object_name = "lastest_question_list"
+    context_object_name = "latest_question_list"
 
     def get_queryset(self):
         """Return the last five published questions"""
+        #return Question.objects.all()
         return Question.objects.order_by("-pub_date")[:5]
 
 
-class DetailView(generic.ListView):
+class DetailView(generic.DetailView):
     model = Question
     template_name = "polls/detail.html"
 
 
-class ResultView(generic.ListView):
+class ResultView(generic.DetailView):
     model = Question
     template_name = "polls/results.html"
 
