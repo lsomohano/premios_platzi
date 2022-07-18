@@ -1,19 +1,29 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+    <link rel="stylesheet" href="{% static 'polls/detail.css' %}">
+    <title>{{ question.question_text}}</title>
 </head>
 <body>
-    <h1>{{ question.question_text}}</h1>
-    <ul>
-        {% for choice in question.choice_set.all %}
-            <li>{{ choice.chice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'polls:detail' question.id %}">¿Votar de nuevo?</a> | 
-    <a href="{% url 'polls:index' %}">Salir</a>
+    <header>
+        <h1 style="font-size: 50px;">{{question.question_text}}</h1>
+    </header>
+    <main>
+        <ul>
+            {% for choice in question.choice_set.all %}
+                <li>{{ choice.chice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+            {% endfor %}
+        </ul>
+    </main>
+    <footer>
+        <a href="{% url 'polls:detail' question.id %}">¿Votar de nuevo?</a> | 
+        <a href="{% url 'polls:index' %}">Ir al Home</a>
+    </footer>
+    
 </body>
 </html>
